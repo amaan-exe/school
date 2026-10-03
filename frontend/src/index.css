@@ -103,7 +103,13 @@
 
 /* ─── Reset & base ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
 body {
   font-family: var(--font-body);
   background-color: var(--page-bg);
@@ -114,6 +120,34 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
+}
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  min-height: 100vh;
+}
+.web-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+@media (max-width: 768px) {
+  .web-container {
+    padding: 0 16px;
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .web-container {
+    padding: 0 12px;
+  }
 }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -2437,27 +2471,6 @@ button.topbar-hamburger:not(.topbar-collapse) { display: none; }
   color: #94A3B8;
 }
 
-/* ── Mobile Responsiveness ── */
-@media (max-width: 1024px) {
-  .school-hero-grid { grid-template-columns: 1fr; }
-  .school-stat-container { grid-template-columns: repeat(2, 1fr); }
-  .principal-desk-card { grid-template-columns: 1fr; }
-  .services-card-grid { grid-template-columns: repeat(2, 1fr); }
-  .facilities-grid { grid-template-columns: 1fr; }
-  .houses-strip { grid-template-columns: repeat(2, 1fr); }
-  .toppers-grid { grid-template-columns: repeat(2, 1fr); }
-  .wing-content-panel { grid-template-columns: 1fr; }
-  .school-footer-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  .school-nav-menu { display: none; }
-  .school-topbar-inner { flex-direction: column; align-items: flex-start; }
-  .services-card-grid { grid-template-columns: 1fr; }
-  .houses-strip { grid-template-columns: 1fr; }
-  .toppers-grid { grid-template-columns: 1fr; }
-  .school-footer-grid { grid-template-columns: 1fr; }
-  .principal-pillars-grid { grid-template-columns: 1fr; }
-}
 
 /* ─── Dashboard widgets ────────────────────────────────────────────── */
 .cal-date {
@@ -2844,24 +2857,120 @@ button.topbar-hamburger:not(.topbar-collapse) { display: none; }
   .btn-fill-demo { width: 100%; min-height: 40px; justify-content: center; }
 
   /* Landing Page Mobile Fixes */
-  .school-topbar { display: none; }
+  .school-topbar { display: none !important; }
   .school-nav-menu { display: none !important; }
+  .school-nav-portal-btn { display: none !important; }
   .web-mobile-btn { display: inline-flex !important; }
   .school-nav-cta-group { gap: 8px; }
-  .btn-admissions-pulse { display: none; }
-  .school-nav-inner { padding: 10px 14px; }
-  .school-brand-group { gap: 8px; }
-  .school-crest-img { width: 42px; height: 42px; }
-  .school-name-en { font-size: 16px; }
-  .school-motto-tag, .school-affil-sub { display: none; }
-  .school-hero { padding: 90px 0 36px; }
-  .school-hero-title { font-size: clamp(2rem, 7vw, 2.75rem); }
-  .school-stat-container { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .school-stat-box { padding: 14px; }
-  .school-stat-number { font-size: 26px; }
-  .principal-desk-card { grid-template-columns: 1fr; }
+  .btn-admissions-pulse { display: none !important; }
+  .school-nav-inner {
+    padding: 10px 14px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .school-brand-group { gap: 8px; max-width: calc(100% - 50px); }
+  .school-crest-img { width: 38px; height: 38px; flex-shrink: 0; }
+  .school-name-en { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .school-motto-tag, .school-affil-sub { display: none !important; }
+  .school-ticker {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .school-ticker-tag {
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .school-ticker-content {
+    overflow: hidden;
+    max-width: calc(100vw - 110px);
+  }
+  .school-hero {
+    padding: 36px 0 44px;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: auto;
+  }
+  .school-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 26px;
+    width: 100%;
+  }
+  .school-hero-badge {
+    max-width: 100%;
+    white-space: normal;
+    font-size: 10.5px;
+    padding: 5px 12px;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    display: inline-flex;
+    text-align: left;
+  }
+  .school-hero-h1 {
+    font-size: clamp(1.75rem, 6.2vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 14px;
+    word-break: break-word;
+  }
+  .school-hero-sub {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    max-width: 100%;
+  }
+  .school-hero-cta-bar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .btn-gold-primary, .btn-navy-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    padding: 12px 18px;
+    box-sizing: border-box;
+  }
+  .school-hero-portal-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 20px 16px;
+    margin-top: 10px;
+  }
+  .portal-quick-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .school-stat-container {
+    grid-template-columns: 1fr 1fr !important;
+    width: 100%;
+    max-width: 100%;
+  }
+  .school-stat-cell {
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+    padding: 16px 10px;
+  }
+  .school-stat-cell:last-child {
+    border-bottom: none;
+  }
+  .school-stat-number, .school-stat-val { font-size: 26px; }
+  .principal-desk-card { grid-template-columns: 1fr !important; }
   .principal-photo-frame { max-height: 280px; }
-  .facilities-grid, .houses-strip, .toppers-grid { grid-template-columns: 1fr !important; }
+  .principal-content-col { padding: 24px 18px; }
+  .facilities-grid, .houses-strip, .toppers-grid, .services-card-grid { grid-template-columns: 1fr !important; }
   .facility-media-wrap { height: 180px; }
   .fee-calc-box { padding: 16px; }
   .school-modal-overlay { padding: 10px; align-items: flex-end; }
@@ -2880,10 +2989,13 @@ button.topbar-hamburger:not(.topbar-collapse) { display: none; }
   .card-padded { padding: 16px 14px; }
   .card-header { padding: 14px 16px; }
   .card-body { padding: 16px 14px; }
-  .school-stat-container { grid-template-columns: 1fr; }
+  .school-stat-container { grid-template-columns: 1fr !important; }
+  .portal-quick-list { grid-template-columns: 1fr !important; }
   .chart-container { height: 250px; }
   .chart-container-sm { height: 210px; }
   .portal-card-top-row { flex-wrap: wrap; gap: 10px; }
+  .school-name-en { font-size: 13.5px; }
+  .school-crest-img { width: 34px; height: 34px; }
 }
 
 /* ─── ERP additions · Phase 1–3 ─────────────────────────────────────────────

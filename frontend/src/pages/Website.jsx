@@ -269,7 +269,7 @@ const Website = () => {
             >
               <Sparkles size={14} /> Admissions 2026–27
             </button>
-            <Link to="/portals" className="btn btn-primary btn-sm" style={{ padding: '8px 14px' }}>
+            <Link to="/portals" className="btn btn-primary btn-sm school-nav-portal-btn" style={{ padding: '8px 14px' }}>
               Staff &amp; Student Login <ArrowRight size={14} />
             </Link>
             <button
