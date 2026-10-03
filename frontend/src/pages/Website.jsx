@@ -273,15 +273,90 @@ const Website = () => {
               Staff &amp; Student Login <ArrowRight size={14} />
             </Link>
             <button
+              type="button"
               className="web-mobile-btn btn btn-secondary btn-sm"
               onClick={() => setMobileMenuOpen((o) => !o)}
-              aria-label="Menu"
-              style={{ display: 'none' }}
+              aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
+
+        {/* ── Mobile Navigation Drawer ── */}
+        {mobileMenuOpen && (
+          <div className="school-mobile-drawer">
+            <div
+              className="school-mobile-drawer-backdrop"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="school-mobile-drawer-panel">
+              <div className="school-mobile-drawer-header">
+                <div className="school-brand-mini">
+                  <img
+                    src="/assets/images/school_crest.jpg"
+                    alt="Babyland School Crest"
+                    className="school-crest-img-sm"
+                  />
+                  <div>
+                    <div className="school-drawer-title">Babyland School</div>
+                    <div className="school-drawer-sub">CBSE Affiliated · Estd. {cfg.brand.established}</div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="school-drawer-close"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close navigation"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <nav className="school-mobile-nav-links">
+                <a href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</a>
+                <a href="#academics" onClick={() => setMobileMenuOpen(false)}>Academics</a>
+                <a href="#admissions" onClick={() => setMobileMenuOpen(false)}>Admissions</a>
+                <a href="#facilities" onClick={() => setMobileMenuOpen(false)}>Facilities</a>
+                <a href="#houses" onClick={() => setMobileMenuOpen(false)}>Houses &amp; Clubs</a>
+                <a href="#fees" onClick={() => setMobileMenuOpen(false)}>Fee Structure</a>
+                <a href="#notices" onClick={() => setMobileMenuOpen(false)}>Circulars</a>
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact Us</a>
+              </nav>
+
+              <div className="school-mobile-drawer-actions">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAdmissionModalOpen(true)
+                    setAdmStep(1)
+                    setMobileMenuOpen(false)
+                  }}
+                  className="btn-admissions-pulse w-full text-center"
+                >
+                  <Sparkles size={14} /> Admissions 2026–27
+                </button>
+                <Link
+                  to="/portals"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn btn-primary w-full text-center"
+                >
+                  Staff &amp; Student Login <ArrowRight size={14} />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFeeModalOpen(true)
+                    setMobileMenuOpen(false)
+                  }}
+                  className="btn btn-secondary w-full text-center"
+                >
+                  <CreditCard size={14} /> Pay Fees Online
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* ── 3. Live Animated Circulars / Breaking Ticker ── */}

@@ -26,6 +26,7 @@ import {
   Coins,
   Receipt,
   PieChart,
+  X,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
@@ -135,6 +136,14 @@ const Sidebar = ({ user, collapsed, mobileOpen, onCloseMobile }) => {
           <div className="sidebar-title">BabyLand</div>
           <div className="sidebar-subtitle">{ROLE_DESK[role] || 'School register'}</div>
         </div>
+        <button
+          type="button"
+          className="sidebar-mobile-close"
+          onClick={onCloseMobile}
+          aria-label="Close sidebar"
+        >
+          <X size={18} />
+        </button>
       </div>
 
       <nav className="sidebar-nav">
